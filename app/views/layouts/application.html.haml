@@ -26,4 +26,42 @@
   - body_classes += current_account&.user&.setting_reduce_motion ? ' reduce-motion' : ' no-reduce-motion'
 
   %body{ class: add_rtl_body_class(body_classes) }
+    - flash.each do |type, message|
+      - if message.length > 0
+        %div{:class => "alert #{bootstrap_class_for(type)} fade in"}
+          %button.close{"data-dismiss" => "alert"} ×
+          = message.html_safe
+        - flash.clear
     = content_for?(:content) ? yield(:content) : yield
+:css
+  .alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+  .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    border-radius: 4px;
+  }
+  .alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
+  .alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+  }
+
+  .alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }

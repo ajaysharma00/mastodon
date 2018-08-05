@@ -74,6 +74,12 @@ Devise.setup do |config|
     manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
     manager.default_strategies(scope: :user).unshift :two_factor_backupable
   end
+    config.omniauth :facebook, "App ID", "App Secret", callback_url: "http://localhost:3000/users/auth/facebook/callback"
+    config.omniauth :google_oauth2, '771842768062-en08dlrenth6n23a5quu7hg0p04u5c21.apps.googleusercontent.com', 'azzW-6WBvO_S6GbV7HR-sI2x', {}
+    config.omniauth :twitter, 'TWITTER_KEY', 'TWITTER_SECRET'
+  
+
+
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing

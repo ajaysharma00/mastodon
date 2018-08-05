@@ -77,4 +77,17 @@ module ApplicationHelper
   def react_component(name, props = {})
     content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
   end
+
+  def bootstrap_class_for flash_type
+    case flash_type
+      when "success"
+        "alert-success"
+      when "error"
+        "alert-danger"
+      when "alert", 'recaptcha_error'
+        "alert-warning"
+      when "notice"
+        "alert-info"
+    end
+  end
 end

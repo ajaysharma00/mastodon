@@ -43,6 +43,7 @@ class User < ApplicationRecord
   include Omniauthable
 
   ACTIVE_DURATION = 7.days
+  devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :twitter]
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret
@@ -63,6 +64,7 @@ class User < ApplicationRecord
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
   has_many :backups, inverse_of: :user
+  has_many :stripe_subscriptions
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, if: :email_changed?

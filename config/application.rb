@@ -100,5 +100,10 @@ module Mastodon
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.send :include, ApplicationExtension
     end
+
+    config.stripe =  {
+      publishable_key: 'pk_test_e6XchlW2Qzg8LejwNM0QNcKv',
+      secret_key: 'sk_test_dyeuaAKhVnjNofuvMasq7JLg'
+    }
   end
 end
